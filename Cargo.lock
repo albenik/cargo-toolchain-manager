@@ -129,9 +129,10 @@ checksum = "d71b6127be86fdcfddb610f7182ac57211d4b18a3e9c82eb2d17662f2227ad6a"
 
 [[package]]
 name = "cargo-toolchain-manager"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "clap",
+ "clap-cargo",
  "itertools",
  "regex",
  "reqwest",
@@ -162,6 +163,16 @@ checksum = "eccb054f56cbd38340b380d4a8e69ef1f02f1af43db2f0cc817a4774d80ae071"
 dependencies = [
  "clap_builder",
  "clap_derive",
+]
+
+[[package]]
+name = "clap-cargo"
+version = "0.15.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d546f0e84ff2bfa4da1ce9b54be42285767ba39c688572ca32412a09a73851e5"
+dependencies = [
+ "anstyle",
+ "clap",
 ]
 
 [[package]]
