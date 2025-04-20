@@ -26,6 +26,7 @@ jobs:
       - run: cargo install cargo-sort cargo-audit cargo-pants
       - run: cargo fmt --all -- --check
       - run: cargo clippy --all-targets
+      - run: cargo audit
       - run: cargo build --release
 
   publish:
