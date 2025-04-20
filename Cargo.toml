@@ -1,0 +1,21 @@
+[package]
+name = "cargo-toolchain-manager"
+version = "0.1.0"
+edition = "2024"
+authors = ["Veniamin Albaev <albenik@gmail.com>"]
+description = "A CLI helper to install all stable (or custom) Rust versions via rustup."
+license = "MIT"
+keywords = ["rust", "toolchain", "rustup", "version", "cli"]
+categories = ["command-line-utilities", "development-tools::cargo-plugins"]
+readme = "README.md"
+documentation = "https://docs.rs/cargo-toolchain-manager"
+repository = "https://github.com/albenik/cargo-toolchain-manager"
+homepage = "https://github.com/albenik/cargo-toolchain-manager"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+itertools = "0.14.0"
+regex = "1"
+reqwest = { version = "0.12", features = ["trust-dns", "rustls-tls"] }
+semver = "1"
+tokio = { version = "1", features = ["rt", "macros", "rt-multi-thread"] }
