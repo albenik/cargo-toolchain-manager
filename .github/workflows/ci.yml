@@ -20,11 +20,14 @@ jobs:
 
       - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly,stable
           components: rustfmt,clippy
 
-      - run: cargo install cargo-sort cargo-audit cargo-pants
-      - run: cargo fmt --all -- --check
+      - run: cargo --version && rustc --version
+      - run: cargo install cargo-sort cargo-audit cargo-pants cargo-update cargo-udeps
+      - run: cargo install-update --all
+      - run: cargo sort --workspace --check
+      - run: cargo +nightly fmt --all --check
       - run: cargo clippy --all-targets
       - run: cargo audit
       - run: cargo build --release
