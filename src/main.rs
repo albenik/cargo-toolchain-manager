@@ -34,7 +34,7 @@ use clap::Parser;
 use semver::{Version, VersionReq};
 
 use crate::cli::CargoCli;
-use crate::cli::ToolchainManagerCommands::InstallMultipleVersions;
+use crate::cli::ToolchainManagerCommands::Install;
 use crate::releases::parse_releases_md;
 
 #[tokio::main]
@@ -42,7 +42,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let CargoCli::ToolchainManager(args) = CargoCli::parse();
 
     match args.commands {
-        InstallMultipleVersions(args) => {
+        Install(args) => {
             let range_filter = args.range.as_ref().and_then(|r| VersionReq::parse(r).ok());
 
             let versions = parse_releases_md().await?;

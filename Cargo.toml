@@ -1,6 +1,6 @@
 [package]
 name = "cargo-toolchain-manager"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2024"
 authors = ["Veniamin Albaev <albenik@gmail.com>"]
 description = "A CLI helper to install all stable (or custom) Rust versions via rustup."
