@@ -1,0 +1,45 @@
+name: CI & Publish
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  release:
+    types: [published]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    name: Check & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: nightly,stable
+          components: rustfmt,clippy
+
+      - run: cargo --version && rustc --version
+      - run: cargo install cargo-sort cargo-audit cargo-pants cargo-update cargo-udeps
+      - run: cargo install-update --all
+      - run: cargo sort --workspace --check
+      - run: cargo +nightly fmt --all --check
+      - run: cargo clippy --all-targets
+      - run: cargo audit
+      - run: cargo build --release
+
+  publish:
+    if: github.event_name == 'release'
+    name: Publish to crates.io
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+      - run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
