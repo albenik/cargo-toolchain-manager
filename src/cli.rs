@@ -20,16 +20,16 @@ pub struct ToolchainManagerArgs {
 #[derive(Subcommand)]
 pub enum ToolchainManagerCommands {
     /// Install multiple toolchain versions
-    InstallMultipleVersions(ToolchainManagerCommandsArgs),
+    Install(InstallArgs),
 }
 
 #[derive(Args)]
-pub struct ToolchainManagerCommandsArgs {
+pub struct InstallArgs {
     /// Only display output without installing
     #[arg(long)]
     pub dry_run: bool,
 
-    /// Semver version range (e.g., '>=1.60.0,<1.70.0')
+    /// Semver version range (e.g., '>=1.60,<1.70')
     #[arg(long)]
     pub range: Option<String>,
 }
