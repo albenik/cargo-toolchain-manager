@@ -1,6 +1,6 @@
 # Cargo Toolchain Manager
 
-`cargo-toolchain-manager`
+[![Latest Version](https://img.shields.io/crates/v/cargo-toolchain-manager.svg)](https://crates.io/crates/cargo-toolchain-manager)
 
 📦 A CLI utility to install all (or selected) Rust versions via `rustup`.
 
@@ -8,7 +8,7 @@ Useful for developers, CI/CD pipelines, and testing environments where multiple 
 
 ## 🚀 Features
 
-- ✅ Install all **stable** versions of Rust
+- ✅ Install multiple **stable** versions of Rust at once
 - ℹ️ Use latest patch of stable version (e.g. install `1.85-<arch>-<target>` toolchain equals to `1.85.1` but not
   `1.85.0`)
 - 🔢 Filter versions using `semver` ranges

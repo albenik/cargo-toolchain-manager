@@ -1,4 +1,6 @@
 name: CI & Publish
+permissions:
+  contents: write
 
 on:
   push:
@@ -58,13 +60,18 @@ jobs:
         with:
           toolchain: stable
       - run: cargo build --release
-      - name: Rename binary
+      - name: Rename binary (*nix)
+        if: runner.os != 'Windows'
         run: |
-          mkdir -p dist
           BIN_NAME="cargo-toolchain-manager"
-          EXT=""
-          if [[ "${{ runner.os }}" == "Windows" ]]; then EXT=".exe"; fi
-          cp target/release/${BIN_NAME}${EXT} dist/${BIN_NAME}-${{ runner.os }}${EXT}
+          mkdir -p dist
+          cp target/release/${BIN_NAME} dist/${BIN_NAME}-${{ runner.os }}
+      - name: Rename binary (win)
+        if: runner.os == 'Windows'
+        run: |
+          BIN_NAME="cargo-toolchain-manager.exe"
+          mkdir -p dist
+          cp target/release/${BIN_NAME} dist/${BIN_NAME}-${{ runner.os }}
       - uses: softprops/action-gh-release@v2
         with:
           files: dist/*
