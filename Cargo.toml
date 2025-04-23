@@ -1,6 +1,6 @@
 [package]
 name = "cargo-toolchain-manager"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 authors = ["Veniamin Albaev <albenik@gmail.com>"]
 description = "A CLI helper to install all stable (or custom) Rust versions via rustup."
@@ -14,8 +14,8 @@ homepage = "https://github.com/albenik/cargo-toolchain-manager"
 
 [dependencies]
 clap = { version = "4", features = ["cargo", "derive"] }
-clap-cargo = "0.15.2"
-itertools = "0.14.0"
+clap-cargo = "0.15"
+itertools = "0.14"
 regex = "1"
 reqwest = "0.12"
 semver = "1"
